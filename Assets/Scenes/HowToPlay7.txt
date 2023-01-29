@@ -1,0 +1,2 @@
+W, A, S, D or Arrow Keys - Moves Stars
+Click on Flickering TV - Increases Score
