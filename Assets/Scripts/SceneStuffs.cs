@@ -5,11 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class SceneStuffs : MonoBehaviour
 {
-    #region singleton
+    #region scene singleton
     private static SceneStuffs _instance;
 
-    public static SceneStuffs Instance { get { return _instance; } }
-    
+    public static SceneStuffs SceneInstance { get { return _instance; } }
 
     private void Awake()
     {
@@ -22,27 +21,44 @@ public class SceneStuffs : MonoBehaviour
             _instance = this;
         }
 
-        DontDestroyOnLoad(Instance);
+        DontDestroyOnLoad(SceneInstance);
     }
     #endregion
 
+    // just handles scene switching for now
     void Update()
     {
         HandleSceneSwitching();
     }
 
+    // CONTROLS: -> , <- , R
+    // next scene, last scene, reload scene
     void HandleSceneSwitching()
     {
+        int currScene = SceneManager.GetActiveScene().buildIndex;
+
         // next scene
-        if (Input.GetKeyDown(KeyCode.L) && SceneManager.sceneCountInBuildSettings != SceneManager.GetActiveScene().buildIndex + 1)
+        if (Input.GetKeyDown(KeyCode.L) && SceneManager.sceneCountInBuildSettings != currScene + 1)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            currScene++;
+            SceneManager.LoadScene(currScene);
+            AudioStuffs.AudioInstance.SwapTrack(currScene);
         }
 
         // last scene
-        if (Input.GetKeyDown(KeyCode.J) && SceneManager.GetActiveScene().buildIndex != 0)
+        if (Input.GetKeyDown(KeyCode.J) && currScene != 0)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+            currScene--;
+            SceneManager.LoadScene(currScene);
+            AudioStuffs.AudioInstance.SwapTrack(currScene);
         }
+
+        // reload scene
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            AudioStuffs.AudioInstance.ResetAudio();
+        }
+
     }
 }
