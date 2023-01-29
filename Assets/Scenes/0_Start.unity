@@ -153,6 +153,7 @@ MonoBehaviour:
   playlist:
   - {fileID: 0}
   - {fileID: 0}
+  timeToFade: 0.5
 --- !u!4 &199726125
 Transform:
   m_ObjectHideFlags: 0
@@ -236,10 +237,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Hello World
+  m_Text: 'Hello World!
 
 
-    Use arrow keys to navigate scenes and R to reload scene'
+    Use arrow keys to navigate scenes and R to reload scene
+
+    (filler
+    text)'
 --- !u!222 &321746257
 CanvasRenderer:
   m_ObjectHideFlags: 0
