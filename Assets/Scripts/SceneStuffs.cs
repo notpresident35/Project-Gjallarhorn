@@ -34,13 +34,13 @@ public class SceneStuffs : MonoBehaviour
     void HandleSceneSwitching()
     {
         // next scene
-        if (Input.GetKeyDown(KeyCode.RightArrow) && SceneManager.sceneCountInBuildSettings != SceneManager.GetActiveScene().buildIndex + 1)
+        if (Input.GetKeyDown(KeyCode.L) && SceneManager.sceneCountInBuildSettings != SceneManager.GetActiveScene().buildIndex + 1)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
 
         // last scene
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && SceneManager.GetActiveScene().buildIndex != 0)
+        if (Input.GetKeyDown(KeyCode.J) && SceneManager.GetActiveScene().buildIndex != 0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         }
