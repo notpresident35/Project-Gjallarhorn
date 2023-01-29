@@ -6,7 +6,7 @@ public class AudioStuffs : MonoBehaviour
 {
     // >>>> There must be an audio clip for each scene for this to work
     [SerializeField] List<AudioClip> playlist = new List<AudioClip>();
-    private AudioSource currTrack, nextTrack;
+    [SerializeField] AudioSource currTrack, nextTrack;
     private bool currSongPlaying;
     public float timeToFade = 0.5f;
 
