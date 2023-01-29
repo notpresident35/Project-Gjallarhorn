@@ -23,9 +23,12 @@ public class CloudSpawner : MonoBehaviour
     {
         timePassed = 0;
         nextSpawn = Random.Range(minTimeBetweenSpawns, maxTimeBetweenSpawns);
-        int index = Random.Range(0, cloudPrefabs.Count);
-        GameObject cloud = GameObject.Instantiate(cloudPrefabs[index], new Vector3(transform.position.x, 5.0f, 0.0f), transform.rotation);
-        cloud.GetComponent<CloudMover>().SetSpeed(Random.Range(minCloudSpeed, maxCloudSpeed));
+        for (int i = 0; i < 6; i++)
+        {
+            int index = Random.Range (0, cloudPrefabs.Count);
+            GameObject cloud = GameObject.Instantiate (cloudPrefabs [index], new Vector3 (transform.position.x - 7.5f * i, 5.0f, 0.0f), transform.rotation);
+            cloud.GetComponent<CloudMover> ().SetSpeed (Random.Range (minCloudSpeed, maxCloudSpeed));
+        }
     }
 
     // Update is called once per frame
