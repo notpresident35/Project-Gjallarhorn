@@ -451,7 +451,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   facingTowards: 1
   startPosition: -5
-  audio: {fileID: 984850368}
+  deathSource: {fileID: 984850368}
   moveLeftKey: 
   moveRightKey: z
 --- !u!50 &180544288
@@ -1020,7 +1020,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   facingTowards: 0
   startPosition: 9
-  audio: {fileID: 984850368}
+  deathSource: {fileID: 984850368}
   moveLeftKey: m
   moveRightKey: 
 --- !u!50 &956343935

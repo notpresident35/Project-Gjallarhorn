@@ -7,11 +7,12 @@ public class BopEmSockEmRobotLogic : MonoBehaviour
     public enum direction{left, right};
     public direction facingTowards;
     public float startPosition;
-    public AudioSource audio;
+    public AudioSource deathSource;
     private Quaternion origRotation;
     public string moveLeftKey;
     public string moveRightKey;
-    // Start is called before the first frame update
+    bool resetting = false;
+
     void Start()
     {        
         origRotation = gameObject.transform.rotation;
@@ -20,13 +21,6 @@ public class BopEmSockEmRobotLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("r")){
-            Debug.Log("[Scene 2]: Reset key pressed");
-            gameObject.transform.rotation = origRotation;
-            gameObject.transform.position = new Vector3(startPosition, 1.0f, 0.0f);
-            GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-            GetComponent<Rigidbody2D>().angularVelocity = 0.0f;
-        }
         if (this.facingTowards == direction.right && Input.GetKeyDown(moveRightKey)){
             this.GetComponent<Rigidbody2D>().AddForce(
                 Vector2.right * 4, ForceMode2D.Impulse
@@ -36,8 +30,23 @@ public class BopEmSockEmRobotLogic : MonoBehaviour
                 Vector2.left * 4, ForceMode2D.Impulse
             );
         }
-        if (gameObject.transform.position[1] < -10 && gameObject.transform.position[1] > -11){
-            audio.Play();
+        if ((transform.position.y < -7f || Mathf.Abs(transform.position.x) > 13f) && !resetting) {
+            resetting = true;
+            if (!deathSource.isPlaying)
+            {
+                deathSource.Play ();
+            }
+            StartCoroutine(Reset());
         }
+    }
+
+    IEnumerator Reset()
+    {
+        yield return new WaitForSeconds(1f);
+        gameObject.transform.rotation = origRotation;
+        gameObject.transform.position = new Vector3 (startPosition, 1.0f, 0.0f);
+        GetComponent<Rigidbody2D> ().velocity = Vector3.zero;
+        GetComponent<Rigidbody2D> ().angularVelocity = 0.0f;
+        resetting = false;
     }
 }
