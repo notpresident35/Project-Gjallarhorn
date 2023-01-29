@@ -11,14 +11,14 @@ public class SceneSixEnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        MoveSpeed = Random.Range(4.5f, 8.2f);
+        MoveSpeed = Random.Range(4f, 7f);
     }
 
     // Update is called once per frame
     void Update()
     {
         Vector3 moveDir = playerTransform.position - transform.position;
-        Vector3 random = new Vector3(Random.Range(-.1f, .1f), Random.Range(-.1f, .1f), Random.Range(-.1f, .1f));
+        Vector3 random = new Vector3(Random.Range(-.06f, .06f), Random.Range(-.06f, .06f), Random.Range(-.06f, .06f));
         transform.Translate (moveDir.normalized * MoveSpeed * Time.deltaTime + random);
     }
 

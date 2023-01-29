@@ -7,7 +7,7 @@ public class SceneSixEnemySpawner : MonoBehaviour
     [SerializeField] public GameObject enemy;
     [SerializeField] public GameObject player;
     [SerializeField] public GameObject timer;
-    private float newEnemyTime = 4.5f;
+    private float newEnemyTime = 3.5f;
     private float currentTime;
     // Start is called before the first frame update
     void Start()
