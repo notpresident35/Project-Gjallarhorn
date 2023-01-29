@@ -12,6 +12,7 @@ public class BopEmSockEmRobotLogic : MonoBehaviour
     public string moveLeftKey;
     public string moveRightKey;
     bool resetting = false;
+    [SerializeField] GameObject tutorialText;
 
     void Start()
     {        
@@ -25,10 +26,18 @@ public class BopEmSockEmRobotLogic : MonoBehaviour
             this.GetComponent<Rigidbody2D>().AddForce(
                 Vector2.right * 4, ForceMode2D.Impulse
             );
+            if (tutorialText.activeInHierarchy)
+            {
+                tutorialText.SetActive (false);
+            }
         } else if (this.facingTowards == direction.left && Input.GetKeyDown(moveLeftKey)){
             this.GetComponent<Rigidbody2D>().AddForce(
                 Vector2.left * 4, ForceMode2D.Impulse
             );
+            if (tutorialText.activeInHierarchy)
+            {
+                tutorialText.SetActive (false);
+            }
         }
         if ((transform.position.y < -7f || Mathf.Abs(transform.position.x) > 13f) && !resetting) {
             resetting = true;

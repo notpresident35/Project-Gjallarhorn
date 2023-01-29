@@ -5,17 +5,12 @@ using UnityEngine;
 public class SceneSixController : MonoBehaviour
 {
 
-    private float MoveSpeed = 7.75f;
+    [SerializeField] float MoveSpeed = 7.75f;
+    [SerializeField] GameObject tutorialText;
     private float MinX = -12.5f;
     private float MaxX = 12.5f;
     private float MinY = -7f;
     private float MaxY = 7f;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()
@@ -36,6 +31,10 @@ public class SceneSixController : MonoBehaviour
         else if ((Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) && transform.position.y > MinY)
         {
             moveDir += Vector3.down;
+        }
+        if (moveDir != Vector3.zero)
+        {
+            tutorialText.SetActive (false);
         }
         transform.Translate (moveDir.normalized * MoveSpeed * Time.deltaTime);
     }
